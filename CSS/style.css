@@ -195,3 +195,8 @@ footer {
 .bg__erro {
   background-color: var(--color_red);
 }
+
+.erro__nome,
+.erro__email {
+  line-height: 30px;
+}
