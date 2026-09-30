@@ -1,8 +1,10 @@
 const btnFechar = document.querySelector(".btn__fechar");
+const btnEnviar = document.querySelector(".btn__cadastrar");
 const msgErro = document.querySelector(".modal__msg_erro");
 const msgSucesso = document.querySelector(".modal__msg_sucesso");
 const modalEnviar = document.querySelector(".modal__enviar");
-
+let nomeValido = false;
+let emailValido = false;
 
 const pegarDados = () => {
   // pegar os dados do forms
@@ -10,34 +12,57 @@ const pegarDados = () => {
   const email = document.querySelector(".input__email").value;
   console.log(nome, email);
 
-  const cadastro = {
-    nome,
-    email
+  if (nome === "" || nome === null || nome.length < 3) {
+    document.querySelector(".erro__nome").textContent =
+      "O nome é obrigatório e precisa ter no mínimo 3 caracteres";
+  } else {
+    nomeValido = true;
+    document.querySelector(".erro__nome").textContent = "";
   }
 
-  console.log(cadastro)
+  const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$/;
+
+  if (!emailRegex.test(email)) {
+    document.querySelector(".erro__email").textContent =
+      "O email é obrigatório e precisa ser válido!";
+  } else {
+    emailValido = true;
+    document.querySelector(".erro__email").textContent = "";
+  }
+
+  if (nomeValido && emailValido) {
+    const cadastro = {
+      nome,
+      email,
+    };
+    console.log(cadastro);
+    document.querySelector('form').reset()
+    return "sucesso";
+  } else {
+    return "erro";
+  }
 };
 
-const mostrarModal = () => {
-  const statusRegister = "sucesso";
-
+const mostrarModal = (statusRegister) => {
   if (statusRegister === "sucesso") {
     msgErro.style.display = "none";
+    msgSucesso.style.display = "block";
     btnFechar.classList.add("bg__sucesso");
+    btnFechar.classList.remove("bg__erro");
   }
   if (statusRegister === "erro") {
     msgSucesso.style.display = "none";
+    msgErro.style.display = "block";
     btnFechar.classList.add("bg__erro");
+    btnFechar.classList.remove("bg__sucesso");
   }
 
   modalEnviar.showModal();
 };
 
-document.querySelector(".btn__cadastrar").addEventListener("click", (e) => {
+btnEnviar.addEventListener("click", (e) => {
   e.preventDefault();
-
-  pegarDados();
-  mostrarModal();
+  mostrarModal(pegarDados());
 });
 
 btnFechar.addEventListener("click", () => {
