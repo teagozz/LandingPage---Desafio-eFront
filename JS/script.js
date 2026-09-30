@@ -4,38 +4,33 @@ const msgErro = document.querySelector(".modal__msg_erro");
 const msgSucesso = document.querySelector(".modal__msg_sucesso");
 const modalEnviar = document.querySelector(".modal__enviar");
 
-
-const pegarDados = () => {
-  // pegar os dados do forms
-  const nome = document.querySelector(".input__nome").value;
-  const email = document.querySelector(".input__email").value;
-  console.log(nome, email);
-
-  if (nome === "" || nome === null || nome.length < 3) {
-    document.querySelector(".erro__nome").textContent =
-      "O nome é obrigatório e precisa ter no mínimo 3 caracteres";
-  } else {
-    document.querySelector(".erro__nome").textContent = "";
-  }
+const validarDados = ({ nome, email }) => {
+  const nomeValido = nome && nome.length >= 3;
 
   const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$/;
+  const emailValido = email && emailRegex.test(email);
 
-  if (!emailRegex.test(email)) {
-    document.querySelector(".erro__email").textContent =
-      "O email é obrigatório e precisa ser válido!";
-  } else {
-    document.querySelector(".erro__email").textContent = "";
-  }
-
-  const cadastro = {
-    nome,
-    email
-  }
-
-  console.log(cadastro)
+  return {
+    nomeValido,
+    emailValido,
+  };
 };
 
-const mostrarModal = (statusRegister) => {
+const pegarDados = () => {
+  const dados = {
+    nome: document.querySelector(".input__nome").value,
+    email: document.querySelector(".input__email").value,
+  };
+
+  const { nomeValido, emailValido } = validarDados(dados);
+  console.log(nomeValido, emailValido);
+
+  const resultado = nomeValido && emailValido ? "sucesso" : "erro";
+  document.querySelector("form").reset();
+  return resultado;
+};
+
+const formatarModal = (statusRegister) => {
   if (statusRegister === "sucesso") {
     msgErro.style.display = "none";
     msgSucesso.style.display = "block";
@@ -48,7 +43,10 @@ const mostrarModal = (statusRegister) => {
     btnFechar.classList.add("bg__erro");
     btnFechar.classList.remove("bg__sucesso");
   }
+};
 
+const mostrarModal = (statusRegister) => {
+  formatarModal(statusRegister);
   modalEnviar.showModal();
 };
 
