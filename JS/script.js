@@ -3,8 +3,7 @@ const btnEnviar = document.querySelector(".btn__cadastrar");
 const msgErro = document.querySelector(".modal__msg_erro");
 const msgSucesso = document.querySelector(".modal__msg_sucesso");
 const modalEnviar = document.querySelector(".modal__enviar");
-let nomeValido = false;
-let emailValido = false;
+
 
 const pegarDados = () => {
   // pegar os dados do forms
@@ -16,7 +15,6 @@ const pegarDados = () => {
     document.querySelector(".erro__nome").textContent =
       "O nome é obrigatório e precisa ter no mínimo 3 caracteres";
   } else {
-    nomeValido = true;
     document.querySelector(".erro__nome").textContent = "";
   }
 
@@ -26,21 +24,15 @@ const pegarDados = () => {
     document.querySelector(".erro__email").textContent =
       "O email é obrigatório e precisa ser válido!";
   } else {
-    emailValido = true;
     document.querySelector(".erro__email").textContent = "";
   }
 
-  if (nomeValido && emailValido) {
-    const cadastro = {
-      nome,
-      email,
-    };
-    console.log(cadastro);
-    document.querySelector('form').reset()
-    return "sucesso";
-  } else {
-    return "erro";
+  const cadastro = {
+    nome,
+    email
   }
+
+  console.log(cadastro)
 };
 
 const mostrarModal = (statusRegister) => {
