@@ -138,6 +138,15 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 18px;
+}
+
+.linkedinFooter {
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--color_blue);
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .btn:hover {
