@@ -33,13 +33,17 @@ const pegarDados = () => {
 const formatarModal = (statusRegister) => {
   msgSucesso.style.display = statusRegister === "sucesso" ? "block" : "none";
   msgErro.style.display = statusRegister === "erro" ? "block" : "none";
+  btnFechar.classList.add(
+    statusRegister === "sucesso" ? "bg__sucesso" : "bg__erro",
+  );
+  btnFechar.classList.remove(
+    statusRegister === "sucesso" ? "bg__erro" : "bg__sucesso",
+  );
 
   if (statusRegister === "sucesso") {
-    btnFechar.classList.add("bg__sucesso");
     btnFechar.classList.remove("bg__erro");
   }
   if (statusRegister === "erro") {
-    btnFechar.classList.add("bg__erro");
     btnFechar.classList.remove("bg__sucesso");
   }
 };
