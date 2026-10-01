@@ -31,15 +31,14 @@ const pegarDados = () => {
 };
 
 const formatarModal = (statusRegister) => {
+  msgSucesso.style.display = statusRegister === "sucesso" ? "block" : "none";
+  msgErro.style.display = statusRegister === "erro" ? "block" : "none";
+
   if (statusRegister === "sucesso") {
-    msgErro.style.display = "none";
-    msgSucesso.style.display = "block";
     btnFechar.classList.add("bg__sucesso");
     btnFechar.classList.remove("bg__erro");
   }
   if (statusRegister === "erro") {
-    msgSucesso.style.display = "none";
-    msgErro.style.display = "block";
     btnFechar.classList.add("bg__erro");
     btnFechar.classList.remove("bg__sucesso");
   }
