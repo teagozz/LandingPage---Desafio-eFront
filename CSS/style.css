@@ -209,3 +209,95 @@ footer {
 .erro__email {
   line-height: 30px;
 }
+
+@media (max-width: 768px) {
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .header {
+    width: 100%;
+  }
+
+  .section__content {
+    width: 100vw;
+    padding-inline: 20px;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  footer {
+    width: 100%;
+    font-size: 16px;
+    padding-inline: 20px;
+    text-align: center;
+  }
+
+  .modal__content {
+    width: 85%;
+  }
+
+  .btn__fechar {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__logo a {
+    font-size: 28px;
+  }
+
+  .section__content h2 {
+    font-size: 32px;
+  }
+
+  .section__content h3 {
+    font-size: 22px;
+  }
+
+  .section__content p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  footer {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .modal__content {
+    width: 100%;
+    height: 100%;
+  }
+
+  .modal__content p {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 320px) {
+  .btn__comprar{
+    width: 150px;
+  }
+  .header__logo a {
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+  }
+  .section__content h2 {
+    font-size: 20px;
+  }
+  .section__content h3 {
+    font-size: 18px;
+  }
+  .section__content p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .modal__content p {
+    font-size: 18px;
+  }
+}
